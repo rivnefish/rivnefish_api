@@ -1,12 +1,5 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.contrib.auth.models import User
-
-from site_manager import views
-
-from rest_framework import routers
-from rest_framework import serializers
-from rest_framework import viewsets
 
 
 urlpatterns = [
