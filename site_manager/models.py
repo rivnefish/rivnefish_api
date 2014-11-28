@@ -78,12 +78,9 @@ class Markers(models.Model):
                                             blank=True)
                                             # Field name made lowercase.
     permit = models.CharField(max_length=30)
-    #===========================================================================
-    # from 24h_price to price_24h!!!
-    #
-    # price_24h = models.DecimalField(null=True, max_digits=7, decimal_places=2,
-    #                                 blank=True)
-    #===========================================================================
+
+    price_24h = models.DecimalField(null=True, max_digits=7, decimal_places=2,
+                                    blank=True)
     dayhour_price = models.DecimalField(null=True, max_digits=7,
                                         decimal_places=2, blank=True)
     boat_usage = models.CharField(max_length=3, blank=True)

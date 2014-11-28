@@ -1,87 +1,84 @@
-# -*- coding: utf-8 -*-
-import json
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
 
-from django.forms import model_to_dict
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+from serializers import CountriesSerializer
+from serializers import DistrictsSerializer
+from serializers import FishesSerializer
+from serializers import MarkersSerializer
+from serializers import MarkersFishesSerializer
+from serializers import MarkersLogSerializer
+from serializers import PassportsSerializer
+from serializers import RegionsSerializer
+
+from models import Countries
+from models import Districts
+from models import Fishes
 from models import Markers
+from models import MarkersFishes
+from models import MarkersLog
+from models import Passports
+from models import Regions
 
 
-def conv(lst):
-        for k, v in lst:
-            if len(v) == 1:
-                yield k, v[0]
-            else:
-                yield k, v
+class CountryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Countries.objects.all()
+    serializer_class = CountriesSerializer
 
 
-@csrf_exempt
-def fish_map_markers(request):
-    if not request.method == 'GET':
-        return HttpResponse('{"error": "Not allowed!"}')
-    result = []
-    print request.method
-    for model in Markers.objects.all():
-        model = model_to_dict(model, fields=['address', 'lat', 'lng',
-                                             'marker_id', 'name'])
-        for key in model.iterkeys():
-            model[key] = '%s' % model[key]
-        result.append(model)
-    return HttpResponse(json.dumps(result), content_type="application/json")
+class DistrictsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Districts.objects.all()
+    serializer_class = DistrictsSerializer
 
 
-@csrf_exempt
-def fish_marker(request, marker_id):
-    if not request.method == 'GET':
-        return HttpResponse('{"error": "denied"}')
-    marker = model_to_dict(Markers.objects.get(marker_id=marker_id))
-    for key in marker.iterkeys():
-        marker[key] = '%s' % marker[key]
-    return HttpResponse(json.dumps(marker), content_type="application/json")
+class FishesViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Fishes.objects.all()
+    serializer_class = FishesSerializer
 
 
-@csrf_exempt
-def add_lake(request):
-    # Here new lake
-    if request.method == 'POST':
-        data = {item[0]: item[1] for item in conv(request.POST.lists())}
-        return HttpResponse(json.dumps(data))
-    elif request.method == 'GET':
-        data = {item[0]: item[1] for item in conv(request.GET.lists())}
-        return HttpResponse(json.dumps(data))
-    else:
-        return HttpResponse('{"error": "Not allowed!"}')
+class MarkersViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Markers.objects.all()
+    serializer_class = MarkersSerializer
 
 
-@csrf_exempt
-def search_by_filters(request):
-    result = None
-    if request.method == 'POST':
-        data = {item[0]: item[1] for item in conv(request.POST.lists())}
-    elif request.method == 'GET':
-        data = {item[0]: item[1] for item in conv(request.GET.lists())}
-    else:
-        return HttpResponse('{"error": "Not allowed!"}')
+class MarkersFishesViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = MarkersFishes.objects.all()
+    serializer_class = MarkersFishesSerializer
 
-    result = Markers.objects.all()
-    if 'name' in data and data['name']:
-        result = result.filter(name__icontains=data['name'])
-    if 'permit' in data and data['permit']:
-        if data['permit'] in ['free', 'paid']:
-            result = result.filter(permit__icontains=data['permit'])
-            #==================================================================
-            # if data['permit'] == 'paid':
-            #     if 'price' in data:
-            #         result = result.filter(permit__lt=data['price'])
-            #==================================================================
-    if 'boat' in data and data['boat']:
-        result = result.filter(boat_usage=data['boat'])
-    if 'at_night' in data:
-        pass
-    if 'distance' in data and data['distance']:
-        result = result.filter(distance_to_rivne__lt=data['distance'])
-    if 'fishes' in data:
-        result = result.filter(distance_to_rivne__lt=data['distance'])
-    if 'fish_weight' in data:
-        pass
-    return HttpResponse(result)
+
+class MarkersLogViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = MarkersLog.objects.all()
+    serializer_class = MarkersLogSerializer
+
+
+class PassportsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Passports.objects.all()
+    serializer_class = PassportsSerializer
+
+
+class RegionsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Regions.objects.all()
+    serializer_class = RegionsSerializer
