@@ -35,3 +35,9 @@ pip install -r requirements.txt
 python manage.py migrate
 
 ```
+
+## Recommend to add
+
+**Django Extensions** https://github.com/django-extensions/django-extensions
+
+**Shell plus** https://github.com/django-extensions/django-extensions/blob/master/docs/shell_plus.rst
