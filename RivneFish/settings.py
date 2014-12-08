@@ -38,11 +38,20 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'site_manager',
+    'django_filters',
 )
 
 REST_FRAMEWORK = {
     #'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    'PAGINATE_BY': 10
+    'PAGINATE_BY': 10,
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+
+    # This for render only JSON with out web ui
+    #==================================================
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # )
+    #==================================================
 }
 
 MIDDLEWARE_CLASSES = (
