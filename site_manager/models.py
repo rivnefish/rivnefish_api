@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Countries(models.Model):
-    country_id = models.IntegerField(primary_key=True, unique=True)
+    country_id = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=765, blank=True)
 
     def __unicode__(self):
@@ -13,7 +13,7 @@ class Countries(models.Model):
 
 
 class Regions(models.Model):
-    region_id = models.IntegerField(primary_key=True)
+    region_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=765, blank=True)
     country_id = models.IntegerField()
 
@@ -25,7 +25,7 @@ class Regions(models.Model):
 
 
 class Districts(models.Model):
-    district_id = models.IntegerField(primary_key=True)
+    district_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=765, blank=True)
     region = models.ForeignKey(Regions)
 
@@ -37,7 +37,7 @@ class Districts(models.Model):
 
 
 class Fishes(models.Model):
-    fish_id = models.IntegerField(primary_key=True)
+    fish_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=765)
     ukr_name = models.CharField(max_length=765, blank=True)
     icon_url = models.CharField(max_length=6249)
@@ -60,7 +60,7 @@ class Fishes(models.Model):
 
 
 class Markers(models.Model):
-    marker_id = models.IntegerField(primary_key=True)
+    marker_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=180)
     address = models.CharField(max_length=300, blank=True)
     lat = models.FloatField()
@@ -71,7 +71,7 @@ class Markers(models.Model):
     contact = models.TextField(blank=True)
     max_depth = models.DecimalField(null=True, max_digits=8, decimal_places=2,
                                     blank=True)
-    average_depth = models.DecimalField(null=True, max_digits=8,
+    average_deptmh = models.DecimalField(null=True, max_digits=8,
                                         decimal_places=2, blank=True)
     distance_to_rivne = models.IntegerField(null=True,
                                             db_column='distance_to_Rivne',
@@ -88,10 +88,10 @@ class Markers(models.Model):
     paid_fish = models.TextField(blank=True)
     note = models.TextField(blank=True)
     note2 = models.CharField(max_length=600)
-    photo_url1 = models.CharField(max_length=6249, blank=True)
-    photo_url2 = models.CharField(max_length=6249, blank=True)
-    photo_url3 = models.CharField(max_length=6249, blank=True)
-    photo_url4 = models.CharField(max_length=6249, blank=True)
+    photo_url1 = models.CharField(max_length=2083, blank=True)
+    photo_url2 = models.CharField(max_length=2083, blank=True)
+    photo_url3 = models.CharField(max_length=2083, blank=True)
+    photo_url4 = models.CharField(max_length=2083, blank=True)
     approval = models.CharField(max_length=24)
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField()
@@ -114,7 +114,7 @@ class Markers(models.Model):
 
 class MarkersFishes(models.Model):
     # Add id, primary_key
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     marker = models.ForeignKey(Markers)
     fish = models.ForeignKey(Fishes)
     weight_avg = models.IntegerField(null=True, blank=True)
@@ -130,7 +130,7 @@ class MarkersFishes(models.Model):
 
 
 class MarkersLog(models.Model):
-    log_id = models.IntegerField(primary_key=True)
+    log_id = models.AutoField(primary_key=True)
     log_text = models.TextField()
     user_info = models.TextField(blank=True)
     log_date = models.DateTimeField()
@@ -145,7 +145,7 @@ class MarkersLog(models.Model):
 
 
 class Passports(models.Model):
-    passport_id = models.IntegerField(primary_key=True)
+    passport_id = models.AutoField(primary_key=True)
     marker = models.ForeignKey(Markers)
     url_suffix = models.CharField(max_length=600)
     modify_date = models.DateTimeField()
