@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 
 from serializers import CountriesSerializer
@@ -19,66 +18,83 @@ from models import MarkersLog
 from models import Passports
 from models import Regions
 
+from filters import CountriesFilter
+from filters import DistrictsFilter
+from filters import FishesFilter
+from filters import MarkersFilter
+from filters import MarkersFishesFilter
+from filters import MarkersLogFilter
+from filters import PassportsFilter
+from filters import RegionsFilter
+
 
 class CountryViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = Countries.objects.all()
     serializer_class = CountriesSerializer
 
 
 class DistrictsViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = Districts.objects.all()
     serializer_class = DistrictsSerializer
 
 
 class FishesViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
-    queryset = Fishes.objects.all()
+
     serializer_class = FishesSerializer
+    queryset = Fishes.objects.all()
 
 
 class MarkersViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = Markers.objects.all()
     serializer_class = MarkersSerializer
+
+    #=============================================================
+    # This is for disable web ui and return only json
+    # from rest_framework import renderers
+    # renderer_classes = [renderers.JSONRenderer]
+    #=============================================================
+    filter_class = MarkersFilter
 
 
 class MarkersFishesViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = MarkersFishes.objects.all()
     serializer_class = MarkersFishesSerializer
+    filter_class = MarkersFishesFilter
 
 
 class MarkersLogViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = MarkersLog.objects.all()
     serializer_class = MarkersLogSerializer
 
 
 class PassportsViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = Passports.objects.all()
     serializer_class = PassportsSerializer
 
 
 class RegionsViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
     """
+
     queryset = Regions.objects.all()
     serializer_class = RegionsSerializer

@@ -14,8 +14,13 @@ router.register(r'markers-fishes', views.MarkersFishesViewSet)
 router.register(r'markers-log', views.MarkersLogViewSet)
 router.register(r'passports', views.PassportsViewSet)
 
-urlpatterns = [
-
-url(r'^', include(router.urls)),
-
-]
+urlpatterns = router.urls
+#===============================================================================
+# urlpatterns = [
+# 
+#  url(r'^', include(router.urls)),
+#  #url(r'^fishes/$', FishesList.as_view(), name='fishes-list'),
+#  #url(r'^fishes/(?P<pk>[^/.]+)/$', FishesList.as_view(), name='fish-detail'),
+# 
+#  ]
+#===============================================================================
