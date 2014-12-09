@@ -8,9 +8,8 @@ class IntegerListFilter(django_filters.Filter):
 
     def filter(self, qs, value):
         if value not in (None, ''):
-            integers = [int(v) for v in value.split(',') if v]
-            qs.filter(**{'%s__%s' % (self.name,
-                                     self.lookup_type): integers})
+            ids = [int(v) for v in value.split(',') if v]
+            return qs.filter(**{'%s__%s' % (self.name, self.lookup_type): ids})
         return qs
 
 

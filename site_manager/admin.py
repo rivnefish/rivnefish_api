@@ -35,7 +35,7 @@ class FishesManager(admin.ModelAdmin):
 
 class MarkersManager(admin.ModelAdmin):
     #fields = []
-    list_display = ('name', 'address', 'country', 'region')
+    list_display = ('name', 'marker_id', 'address', 'country', 'region')
 
 
 class MarkersFishesManager(admin.ModelAdmin):
