@@ -1,18 +1,26 @@
 from django.conf.urls import include
 from django.conf.urls import url
 from rest_framework import routers
-from site_manager import views
+
+from site_manager.views import CountryView
+from site_manager.views import DistrictsView
+from site_manager.views import FishesView
+from site_manager.views import MarkersFishesView
+from site_manager.views import MarkersLogView
+from site_manager.views import MarkersView
+from site_manager.views import PasportsView
+from site_manager.views import RegionsView
 
 
 router = routers.DefaultRouter()
-router.register(r'countries', views.CountryViewSet)
-router.register(r'regions', views.RegionsViewSet)
-router.register(r'districs', views.DistrictsViewSet)
-router.register(r'fishes', views.FishesViewSet)
-router.register(r'markers', views.MarkersViewSet)
-router.register(r'markers-fishes', views.MarkersFishesViewSet)
-router.register(r'markers-log', views.MarkersLogViewSet)
-router.register(r'passports', views.PassportsViewSet)
+router.register(r'countries', CountryView.CountryViewSet)
+router.register(r'regions', RegionsView.RegionsViewSet)
+router.register(r'districs', DistrictsView.DistrictsViewSet)
+router.register(r'fishes', FishesView.FishesViewSet)
+router.register(r'markers', MarkersView.MarkersViewSet)
+router.register(r'markers-fishes', MarkersFishesView.MarkersFishesViewSet)
+router.register(r'markers-log', MarkersLogView.MarkersLogViewSet)
+router.register(r'passports', PasportsView.PassportsViewSet)
 
 urlpatterns = router.urls
 #===============================================================================

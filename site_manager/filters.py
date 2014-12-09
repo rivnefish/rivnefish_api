@@ -36,6 +36,24 @@ class FishesFilter(django_filters.FilterSet):
         fields = ['eng_name', 'fish_id']
 
 
+# Get example of custom filters here http://bit.ly/1ythc3Z
+class IntegerListFilter(django_filters.Filter):
+    def filter(self, qs, value):
+        if value not in (None, ''):
+            integers = [int(v) for v in value.split(',') if v]
+            qs.filter(**{'%s__%s' % (self.name,
+                                     self.lookup_type): integers})
+        return qs
+
+
+class IntegerListFilterUniq(django_filters.Filter):
+    def filter(self, qs, value):
+        if value not in (None, ''):
+            for _id in set([int(v) for v in value.split(',') if v]):
+                qs = qs.filter(fishes_set__fish=_id)
+        return qs
+
+
 class MarkersFilter(django_filters.FilterSet):
     """ Filters for markers.
 
@@ -43,6 +61,8 @@ class MarkersFilter(django_filters.FilterSet):
     `/api/markers/?distance_higher=1` - get all markers with distance to Rivne higher then 1 meters
     `/api/markers/?distance_higher=1&distance_lower=15` - get all markers in Range from 1 to 15 meters
     or `/api/markers/?distance_lower=100&distance_higher=1`
+
+    `/api/markers/?fishes=35,34` - get all markers with fish 35 OR 34
 
     !!! I do not use `django_filters.RangeFilter` because it`s not working!!!
 
@@ -53,10 +73,19 @@ class MarkersFilter(django_filters.FilterSet):
 
     distance_lower = django_filters.NumberFilter(name="distance_to_rivne", lookup_type='lte')
     distance_higher = django_filters.NumberFilter(name="distance_to_rivne", lookup_type='gte')
+    fishes = IntegerListFilter(name="fishes_set__fish", lookup_type='in')
+    ufishes = IntegerListFilterUniq(name="fishes_set__fish", lookup_type='in')
 
     class Meta:
         model = Markers
-        fields = ['distance_higher', 'distance_lower']
+        fields = ['distance_higher', 'distance_lower', 'fishes', 'ufishes']
+
+    #===========================================================================
+    # def __init__(self, *args, **kwargs):
+    #     print args
+    #     print kwargs
+    #     super(MarkersFilter, self).__init__(*args, **kwargs)
+    #===========================================================================
 
 
 class MarkersFishesFilter(django_filters.FilterSet):
