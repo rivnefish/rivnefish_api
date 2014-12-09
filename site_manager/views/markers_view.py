@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from site_manager.filters import MarkersFilter
+from site_manager.filters.markers_filter import MarkersFilter
 from site_manager.models import Markers
 from site_manager.serializers import MarkersSerializer
 

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from site_manager.filters import PassportsFilter
+from site_manager.filters.passports_filter import PassportsFilter
 from site_manager.models import Passports
 from site_manager.serializers import PassportsSerializer
 

@@ -2,25 +2,25 @@ from django.conf.urls import include
 from django.conf.urls import url
 from rest_framework import routers
 
-from site_manager.views import CountryView
-from site_manager.views import DistrictsView
-from site_manager.views import FishesView
-from site_manager.views import MarkersFishesView
-from site_manager.views import MarkersLogView
-from site_manager.views import MarkersView
-from site_manager.views import PasportsView
-from site_manager.views import RegionsView
+from site_manager.views import country_view
+from site_manager.views import districts_view
+from site_manager.views import fishes_view
+from site_manager.views import markers_fishes_view
+from site_manager.views import markers_log_view
+from site_manager.views import markers_view
+from site_manager.views import passports_view
+from site_manager.views import regions_view
 
 
 router = routers.DefaultRouter()
-router.register(r'countries', CountryView.CountryViewSet)
-router.register(r'regions', RegionsView.RegionsViewSet)
-router.register(r'districs', DistrictsView.DistrictsViewSet)
-router.register(r'fishes', FishesView.FishesViewSet)
-router.register(r'markers', MarkersView.MarkersViewSet)
-router.register(r'markers-fishes', MarkersFishesView.MarkersFishesViewSet)
-router.register(r'markers-log', MarkersLogView.MarkersLogViewSet)
-router.register(r'passports', PasportsView.PassportsViewSet)
+router.register(r'countries', country_view.CountryViewSet)
+router.register(r'regions', regions_view.RegionsViewSet)
+router.register(r'districs', districts_view.DistrictsViewSet)
+router.register(r'fishes', fishes_view.FishesViewSet)
+router.register(r'markers', markers_view.MarkersViewSet)
+router.register(r'markers-fishes', markers_fishes_view.MarkersFishesViewSet)
+router.register(r'markers-log', markers_log_view.MarkersLogViewSet)
+router.register(r'passports', passports_view.PassportsViewSet)
 
 urlpatterns = router.urls
 #===============================================================================
