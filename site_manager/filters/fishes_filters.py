@@ -4,6 +4,8 @@ from site_manager.models import Fishes
 
 
 class FishesFilter(django_filters.FilterSet):
+    """
+    """
 
     class Meta:
         model = Fishes

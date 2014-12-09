@@ -2,7 +2,7 @@ from rest_framework import viewsets
 
 from site_manager.filters.markers_filter import MarkersFilter
 from site_manager.models import Markers
-from site_manager.serializers import MarkersSerializer
+from site_manager.serializers.markers_serializer import MarkersSerializer
 
 
 class MarkersViewSet(viewsets.ModelViewSet):
