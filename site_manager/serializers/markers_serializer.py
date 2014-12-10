@@ -4,8 +4,6 @@ from markers_fishes_serializer import MarkersFishesSerializer
 
 
 class MarkersSerializer(serializers.ModelSerializer):
-    """
-    """
 
     district = serializers.SlugRelatedField(read_only=True, slug_field='name')
     country = serializers.SlugRelatedField(read_only=True, slug_field='name')
@@ -21,6 +19,4 @@ class MarkersSerializer(serializers.ModelSerializer):
                   'note', 'note2', 'photo_url1', 'photo_url2', 'photo_url3',
                   'photo_url4', 'approval', 'create_date', 'modify_date',
                   'author_id', 'post_id', 'gallery_id', 'region', 'district',
-                  'country',
-                  'fishes_set',
-                  )
+                  'country', 'fishes_set',)

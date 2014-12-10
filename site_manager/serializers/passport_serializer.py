@@ -3,8 +3,6 @@ from site_manager.models import Passports
 
 
 class PassportsSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    """
 
     marker = serializers.SlugRelatedField(read_only=True, slug_field='name')
 

@@ -4,8 +4,6 @@ from site_manager.models import MarkersFishes
 
 
 class MarkersFishesSerializer(serializers.ModelSerializer):
-    """
-    """
 
     def get_fish(self, mf, **kwargs):
         return model_to_dict(mf.fish)

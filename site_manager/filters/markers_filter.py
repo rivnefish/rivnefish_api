@@ -7,6 +7,7 @@ from enum_filters import FilterForEnumField
 
 
 class MarkersFilter(django_filters.FilterSet):
+
     """ Filters for markers.
 
     `/api/markers/?distance_lower=15` - get all merkers with distance to Rivne lower then 15 meters

@@ -3,8 +3,6 @@ from site_manager.models import Fishes
 
 
 class FishesSerializer(serializers.ModelSerializer):
-    """
-    """
 
     # markers_set = serializers.HyperlinkedRelatedField(many=True, view_name='markersfishes-detail')
 
@@ -13,5 +11,4 @@ class FishesSerializer(serializers.ModelSerializer):
         fields = ('fish_id', 'name', 'ukr_name', 'icon_url', 'icon_width',
                   'icon_height', 'latin_name', 'eng_name', 'folk_name',
                   'predator', 'redbook', 'picture', 'description',
-                  'article_url',
-                  )
+                  'article_url')

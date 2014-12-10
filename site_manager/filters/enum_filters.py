@@ -2,8 +2,6 @@ import django_filters
 
 
 class FilterForEnumField(django_filters.Filter):
-    """
-    """
 
     def __init__(self, *args, **kwargs):
         self.available = kwargs.pop('available', None)
@@ -22,7 +20,6 @@ class FilterForEnumField(django_filters.Filter):
                 value = 0
 
         if value and value in self.available:
-            print {'%s__%s' % (self.name, self.lookup_type): value}
             return qs.filter(**{'%s__%s' % (self.name,
                                             self.lookup_type): value})
         return qs

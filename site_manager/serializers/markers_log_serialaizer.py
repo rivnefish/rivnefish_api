@@ -3,8 +3,6 @@ from site_manager.models import MarkersLog
 
 
 class MarkersLogSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    """
 
     class Meta:
         model = MarkersLog

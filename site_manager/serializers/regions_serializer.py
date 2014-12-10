@@ -2,9 +2,7 @@ from rest_framework import serializers
 from site_manager.models import Regions
 
 
-class RegionsSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    """
+class RegionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Regions
