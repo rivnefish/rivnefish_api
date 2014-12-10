@@ -71,7 +71,7 @@ class Markers(models.Model):
     contact = models.TextField(blank=True)
     max_depth = models.DecimalField(null=True, max_digits=8, decimal_places=2,
                                     blank=True)
-    average_deptmh = models.DecimalField(null=True, max_digits=8,
+    average_dept = models.DecimalField(null=True, max_digits=8,
                                         decimal_places=2, blank=True)
     distance_to_rivne = models.IntegerField(null=True,
                                             db_column='distance_to_Rivne',
