@@ -6,8 +6,7 @@ from site_manager.serializers.districts_serializer import DistrictsSerializer
 
 
 class DistrictsViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     queryset = Districts.objects.all()
     serializer_class = DistrictsSerializer
+    filter_class = DistrictsFilter

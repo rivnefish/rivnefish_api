@@ -6,8 +6,7 @@ from site_manager.serializers.markers_log_serialaizer import MarkersLogSerialize
 
 
 class MarkersLogViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     queryset = MarkersLog.objects.all()
     serializer_class = MarkersLogSerializer
+    filter_class = MarkersLogFilter

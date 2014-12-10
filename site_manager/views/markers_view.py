@@ -6,8 +6,6 @@ from site_manager.serializers.markers_serializer import MarkersSerializer
 
 
 class MarkersViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     queryset = Markers.objects.all()
     serializer_class = MarkersSerializer

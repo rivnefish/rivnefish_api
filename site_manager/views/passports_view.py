@@ -6,8 +6,7 @@ from site_manager.serializers.passport_serializer import PassportsSerializer
 
 
 class PassportsViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     queryset = Passports.objects.all()
     serializer_class = PassportsSerializer
+    filter_class = PassportsFilter

@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Countries(models.Model):
+
     country_id = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=765, blank=True)
 
@@ -13,6 +14,7 @@ class Countries(models.Model):
 
 
 class Regions(models.Model):
+
     region_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=765, blank=True)
     country_id = models.IntegerField()
@@ -25,6 +27,7 @@ class Regions(models.Model):
 
 
 class Districts(models.Model):
+
     district_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=765, blank=True)
     region = models.ForeignKey(Regions)
@@ -37,6 +40,7 @@ class Districts(models.Model):
 
 
 class Fishes(models.Model):
+
     fish_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=765)
     ukr_name = models.CharField(max_length=765, blank=True)
@@ -60,6 +64,7 @@ class Fishes(models.Model):
 
 
 class Markers(models.Model):
+
     marker_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=180)
     address = models.CharField(max_length=300, blank=True)
@@ -71,7 +76,7 @@ class Markers(models.Model):
     contact = models.TextField(blank=True)
     max_depth = models.DecimalField(null=True, max_digits=8, decimal_places=2,
                                     blank=True)
-    average_dept = models.DecimalField(null=True, max_digits=8,
+    average_depth = models.DecimalField(null=True, max_digits=8,
                                         decimal_places=2, blank=True)
     distance_to_rivne = models.IntegerField(null=True,
                                             db_column='distance_to_Rivne',
@@ -113,6 +118,7 @@ class Markers(models.Model):
 
 
 class MarkersFishes(models.Model):
+
     id = models.AutoField(primary_key=True)
     marker = models.ForeignKey(Markers, related_name='fishes_set')
     fish = models.ForeignKey(Fishes, related_name='markers_set')
@@ -129,6 +135,7 @@ class MarkersFishes(models.Model):
 
 
 class MarkersLog(models.Model):
+
     log_id = models.AutoField(primary_key=True)
     log_text = models.TextField()
     user_info = models.TextField(blank=True)
@@ -144,6 +151,7 @@ class MarkersLog(models.Model):
 
 
 class Passports(models.Model):
+
     passport_id = models.AutoField(primary_key=True)
     marker = models.ForeignKey(Markers)
     url_suffix = models.CharField(max_length=600)

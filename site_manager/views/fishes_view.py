@@ -6,8 +6,7 @@ from site_manager.serializers.fishes_serializer import FishesSerializer
 
 
 class FishesViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     serializer_class = FishesSerializer
     queryset = Fishes.objects.all()
+    filter_class = FishesFilter

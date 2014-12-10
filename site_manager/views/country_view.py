@@ -6,8 +6,7 @@ from site_manager.serializers.countries_serializer import CountriesSerializer
 
 
 class CountryViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     queryset = Countries.objects.all()
     serializer_class = CountriesSerializer
+    filter_class = CountriesFilter

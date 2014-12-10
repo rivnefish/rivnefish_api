@@ -6,8 +6,6 @@ from site_manager.serializers.markers_fishes_serializer import MarkersFishesSeri
 
 
 class MarkersFishesViewSet(viewsets.ModelViewSet):
-    """
-    """
 
     queryset = MarkersFishes.objects.all()
     serializer_class = MarkersFishesSerializer
