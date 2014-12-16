@@ -119,7 +119,7 @@ class Markers(models.Model):
 
 class MarkersFishes(models.Model):
 
-    id = models.AutoField(primary_key=True)
+    markers_fishes_id = models.AutoField(primary_key=True)
     marker = models.ForeignKey(Markers, related_name='fishes_set')
     fish = models.ForeignKey(Fishes, related_name='markers_set')
     weight_avg = models.IntegerField(null=True, blank=True)

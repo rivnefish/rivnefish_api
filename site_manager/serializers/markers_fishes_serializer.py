@@ -16,5 +16,5 @@ class MarkersFishesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MarkersFishes
-        fields = ('id', 'marker', 'fish', 'weight_avg', 'weight_max',
+        fields = ('markers_fishes_id', 'marker', 'fish', 'weight_avg', 'weight_max',
                   'amount', 'notes')
