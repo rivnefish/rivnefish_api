@@ -16,7 +16,14 @@ pip install djangorestframework
 pip install django-filter
 ```
 
-4)  Run project server
+4)  Install MySQldb
+
+```
+sudo apt-get install python-dev
+pip install mysql-python
+```
+
+5)  Run project server
 
 ```
 python manage.py runserver 0.0.0.0:8000
