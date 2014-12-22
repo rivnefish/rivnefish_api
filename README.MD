@@ -10,7 +10,13 @@ pip install  django
 pip install djangorestframework
 ```
 
-3)  Run project server
+3)  Next
+
+```
+pip install django-filter
+```
+
+4)  Run project server
 
 ```
 python manage.py runserver 0.0.0.0:8000
