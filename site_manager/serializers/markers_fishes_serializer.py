@@ -11,10 +11,10 @@ class MarkersFishesSerializer(serializers.ModelSerializer):
     def get_marker(self, mf, **kwargs):
         return model_to_dict(mf.marker)
 
-    fish = serializers.SerializerMethodField('get_fish')
+    marker_fish = serializers.SerializerMethodField('get_fish')
     #marker = serializers.SerializerMethodField('get_marker')
 
     class Meta:
         model = MarkersFishes
-        fields = ('markers_fishes_id', 'marker', 'fish', 'weight_avg', 'weight_max',
-                  'amount', 'notes')
+        fields = ('markers_fishes_id', 'marker', 'marker_fish', 'weight_avg',
+                  'weight_max', 'amount', 'notes')
