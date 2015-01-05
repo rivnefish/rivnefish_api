@@ -38,12 +38,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #'django.contrib.sites',
     'rest_framework',
+    'rest_framework.authtoken',
     'site_manager',
     'django_filters',
 )
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser',
+    ),
 
     #===========================================================================
     # 'DEFAULT_PERMISSION_CLASSES': (
@@ -63,6 +66,12 @@ REST_FRAMEWORK = {
     #     'rest_framework.renderers.JSONRenderer',
     # )
     #===========================================================================
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
 }
 
 MIDDLEWARE_CLASSES = (
