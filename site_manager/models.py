@@ -4,7 +4,7 @@ from django.db import models
 class Countries(models.Model):
 
     country_id = models.AutoField(primary_key=True, unique=True)
-    name = models.CharField(max_length=765, blank=True)
+    name = models.CharField(max_length=255, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -16,7 +16,7 @@ class Countries(models.Model):
 class Regions(models.Model):
 
     region_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=765, blank=True)
+    name = models.CharField(max_length=255, blank=True)
     country_id = models.IntegerField()
 
     def __unicode__(self):
@@ -29,7 +29,7 @@ class Regions(models.Model):
 class Districts(models.Model):
 
     district_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=765, blank=True)
+    name = models.CharField(max_length=255, blank=True)
     region = models.ForeignKey(Regions)
 
     def __unicode__(self):
@@ -42,19 +42,19 @@ class Districts(models.Model):
 class Fishes(models.Model):
 
     fish_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=765)
-    ukr_name = models.CharField(max_length=765, blank=True)
-    icon_url = models.CharField(max_length=6249)
+    name = models.CharField(max_length=255)
+    ukr_name = models.CharField(max_length=255, blank=True)
+    icon_url = models.CharField(max_length=2083)
     icon_width = models.IntegerField()
     icon_height = models.IntegerField()
-    latin_name = models.CharField(max_length=765, blank=True)
-    eng_name = models.CharField(max_length=765, blank=True)
-    folk_name = models.CharField(max_length=765, blank=True)
+    latin_name = models.CharField(max_length=255, blank=True)
+    eng_name = models.CharField(max_length=255, blank=True)
+    folk_name = models.CharField(max_length=255, blank=True)
     predator = models.CharField(max_length=3, blank=True)
     redbook = models.CharField(max_length=3, blank=True)
-    picture = models.CharField(max_length=6249, blank=True)
+    picture = models.CharField(max_length=2083, blank=True)
     description = models.TextField(blank=True)
-    article_url = models.CharField(max_length=600, blank=True)
+    article_url = models.CharField(max_length=200, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -66,8 +66,8 @@ class Fishes(models.Model):
 class Markers(models.Model):
 
     marker_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=180)
-    address = models.CharField(max_length=300, blank=True)
+    name = models.CharField(max_length=60)
+    address = models.CharField(max_length=100, blank=True)
     lat = models.FloatField()
     lng = models.FloatField()
     area = models.IntegerField(null=True, blank=True)
@@ -92,7 +92,7 @@ class Markers(models.Model):
     time_to_fish = models.CharField(max_length=24, blank=True)
     paid_fish = models.TextField(blank=True)
     note = models.TextField(blank=True)
-    note2 = models.CharField(max_length=600)
+    note2 = models.CharField(max_length=200)
     photo_url1 = models.CharField(max_length=2083, blank=True)
     photo_url2 = models.CharField(max_length=2083, blank=True)
     photo_url3 = models.CharField(max_length=2083, blank=True)
