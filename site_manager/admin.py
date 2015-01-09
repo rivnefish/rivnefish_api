@@ -37,10 +37,17 @@ class FishesManager(admin.ModelAdmin):
     list_display = ['name', 'description', 'fish_id']
 
 
+class MarkersFishesInline(admin.TabularInline):
+    model = MarkersFishes
+    extra = 0
+    fk_name = "marker"
+
+
 class MarkersManager(admin.ModelAdmin):
 
     #fields = []
     list_display = ('name', 'marker_id', 'address', 'country', 'region')
+    inlines = [MarkersFishesInline]
 
 
 class MarkersFishesManager(admin.ModelAdmin):
