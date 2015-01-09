@@ -43,11 +43,23 @@ class MarkersFishesInline(admin.TabularInline):
     fk_name = "marker"
 
 
+def make_approved(modeladmin, request, queryset):
+    queryset.update(approval='approved')
+
+
+def make_pending(modeladmin, request, queryset):
+    queryset.update(approval='pending')
+make_approved.short_description = "Mark selected markers as approved"
+make_pending.short_description = "Mark selected markers as pending"
+
+
 class MarkersManager(admin.ModelAdmin):
 
     #fields = []
-    list_display = ('name', 'marker_id', 'address', 'country', 'region')
+    list_display = ('name', 'marker_id', 'address', 'country', 'region',
+                    'approval')
     inlines = [MarkersFishesInline]
+    actions = [make_approved, make_pending]
 
 
 class MarkersFishesManager(admin.ModelAdmin):
