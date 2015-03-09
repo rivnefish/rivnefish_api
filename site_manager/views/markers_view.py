@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from site_manager.filters.markers_filter import MarkersFilter
 from site_manager.models import Markers
 from site_manager.serializers.markers_serializer import MarkersSerializer
+from site_manager.serializers.markers_serializer import ShortMarkersSerializer
 
 
 class MarkersViewSet(viewsets.ModelViewSet):
@@ -14,4 +15,11 @@ class MarkersViewSet(viewsets.ModelViewSet):
     # from rest_framework import renderers
     # renderer_classes = [renderers.JSONRenderer]
     #=============================================================
+    filter_class = MarkersFilter
+
+
+class ShortMarkersViewSet(viewsets.ModelViewSet):
+
+    queryset = Markers.objects.all()
+    serializer_class = ShortMarkersSerializer
     filter_class = MarkersFilter

@@ -1,0 +1,20 @@
+LoadModule wsgi_module modules/mod_wsgi.so
+
+<VirtualHost 10.129.199.178:80>
+    ServerAdmin admin@admin.admin
+    ServerName lalala
+    
+    WSGIDaemonProcess rivne_fish user=okir group=okir threads=25
+    WSGIProcessGroup rivne_fish
+    
+    WSGIScriptAlias / /home/okir/djangoFolder/RivneFish/RivneFish/wsgi.py
+    WSGIPassAuthorization On
+    
+    #Alias /static /home/okir/...
+        
+    #<Directory /home/okir/...>
+    #    Order allow,deny
+    #    Allow from all
+    #</Directory>
+
+</VirtualHost>

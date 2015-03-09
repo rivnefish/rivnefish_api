@@ -128,7 +128,7 @@ class MarkersFishes(models.Model):
     notes = models.TextField(blank=True)
 
     def __unicode__(self):
-        return self.fish.name
+        return self.marker.name
 
     class Meta:
         db_table = u'markers_fishes'

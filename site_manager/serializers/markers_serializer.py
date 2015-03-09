@@ -10,7 +10,6 @@ class MarkersSerializer(serializers.ModelSerializer):
     region = serializers.SlugRelatedField(read_only=True, slug_field='name')
     # fishes_set = MarkersFishesSerializer()
 
-
     class Meta:
         model = Markers
         fields = ('marker_id', 'name', 'address', 'lat', 'lng', 'area',
@@ -21,3 +20,11 @@ class MarkersSerializer(serializers.ModelSerializer):
                   'photo_url4', 'approval', 'create_date', 'modify_date',
                   'author_id', 'post_id', 'gallery_id', 'region', 'district',
                   'country')
+
+
+class ShortMarkersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Markers
+        fields = ('marker_id', 'name', 'address', 'lat', 'lng', 'photo_url1',
+                  'photo_url2', 'photo_url3', 'photo_url4')
