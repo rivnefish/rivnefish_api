@@ -110,6 +110,13 @@ class Markers(models.Model):
     country = models.ForeignKey(Countries, null=True, db_column='country',
                                 blank=True)
 
+    @property
+    def photos(self):
+        return ['http://bit.ly/1EYHvAX',
+                'http://bit.ly/1wuTo00',
+                'http://bit.ly/1BrFhJ3',
+                'http://bit.ly/1EcgN6v']
+
     def __unicode__(self):
         return self.name
 
