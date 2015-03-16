@@ -26,7 +26,7 @@ class MarkersSerializer(serializers.ModelSerializer):
                         m.marker_id=%d''' % (settings.HOST_NAME,
                                              marker.marker_id)
         data = Markers.objects.raw(query)
-        return sum(list(data.query), [])
+        return list(sum(list(data.query), ()))
 
     class Meta:
         model = Markers
