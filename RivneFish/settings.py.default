@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Project hostname
+HOST_NAME = 'http://rivnefish.com/'
 
 # Application definition
 

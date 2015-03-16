@@ -1,6 +1,7 @@
+from django.conf import settings
+from markers_fishes_serializer import MarkersFishesSerializer
 from rest_framework import serializers
 from site_manager.models import Markers
-from markers_fishes_serializer import MarkersFishesSerializer
 
 
 class MarkersSerializer(serializers.ModelSerializer):
@@ -9,6 +10,23 @@ class MarkersSerializer(serializers.ModelSerializer):
     country = serializers.SlugRelatedField(read_only=True, slug_field='name')
     region = serializers.SlugRelatedField(read_only=True, slug_field='name')
     # fishes_set = MarkersFishesSerializer()
+    photos = serializers.SerializerMethodField()
+
+    def get_photos(self, marker):
+        query = '''SELECT
+                        CONCAT('%s',g.path,'/',p.filename)
+                    FROM
+                        wp_ngg_pictures p,
+                        wp_ngg_gallery g
+                    LEFT JOIN
+                        markers m ON g.gid=m.gallery_id
+                    WHERE
+                        p.galleryid=m.gallery_id
+                    AND
+                        m.marker_id=%d''' % (settings.HOST_NAME,
+                                             marker.marker_id)
+        data = Markers.objects.raw(query)
+        return list(data.query)[0]
 
     class Meta:
         model = Markers
