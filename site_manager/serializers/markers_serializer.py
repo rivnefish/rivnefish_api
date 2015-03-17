@@ -16,15 +16,14 @@ class MarkersSerializer(serializers.ModelSerializer):
         query = '''SELECT
                         CONCAT('%s',g.path,'/',p.filename)
                     FROM
-                        wp_ngg_pictures p,
-                        wp_ngg_gallery g
-                    LEFT JOIN
+                        wp_ngg_pictures p
+                    JOIN
+                        wp_ngg_gallery g ON g.gid=p.galleryid
+                    JOIN
                         markers m ON g.gid=m.gallery_id
                     WHERE
-                        p.galleryid=m.gallery_id
-                    AND
-                        m.marker_id=%d''' % (settings.HOST_NAME,
-                                             marker.marker_id)
+                        m.marker_id=%d ;''' % (settings.HOST_NAME,
+                                               marker.marker_id)
         data = Markers.objects.raw(query)
         return list(sum(list(data.query), ()))
 
