@@ -57,5 +57,4 @@ class ShortMarkersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Markers
-        fields = ('marker_id', 'name', 'address', 'lat', 'lng', 'photo_url1',
-                  'photo_url2', 'photo_url3', 'photo_url4')
+        fields = ('marker_id', 'name', 'address', 'lat', 'lng')
