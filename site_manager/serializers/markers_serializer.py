@@ -26,7 +26,7 @@ class MarkersSerializer(serializers.ModelSerializer):
                         m.marker_id=%d ;''' % (settings.HOST_NAME,
                                                marker.marker_id)
         data = Markers.objects.raw(query)
-        return data
+        return list(sum(list(data.query), ()))
 
     def get_lake(self, marker):
         query = '''SELECT
@@ -39,7 +39,7 @@ class MarkersSerializer(serializers.ModelSerializer):
                         marker_id=%d;''' % (settings.HOST_NAME,
                                             marker.marker_id)
         data = Markers.objects.raw(query)
-        return list(sum(list(data.query), ()))
+        return str(data)
 
     class Meta:
         model = Markers
