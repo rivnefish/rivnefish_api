@@ -1,5 +1,6 @@
 from django.conf.urls import include
 from django.conf.urls import url
+
 from rest_framework import routers
 
 from site_manager.views import country_view
@@ -23,13 +24,8 @@ router.register(r'markers-fishes', markers_fishes_view.MarkersFishesViewSet)
 router.register(r'markers-log', markers_log_view.MarkersLogViewSet)
 router.register(r'passports', passports_view.PassportsViewSet)
 
-urlpatterns = router.urls
-#===============================================================================
-# urlpatterns = [
-#
-#  url(r'^', include(router.urls)),
-#  #url(r'^fishes/$', FishesList.as_view(), name='fishes-list'),
-#  #url(r'^fishes/(?P<pk>[^/.]+)/$', FishesList.as_view(), name='fish-detail'),
-#
-#  ]
-#===============================================================================
+urlpatterns = [
+ url('^lastchanges/$', markers_view.LastChangesViewSet.as_view({'get': 'retrieve'})),
+ ]
+
+urlpatterns += router.urls
