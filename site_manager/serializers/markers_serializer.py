@@ -30,6 +30,7 @@ class MarkersSerializer(serializers.ModelSerializer):
 
     def get_lake(self, marker):
         query = '''SELECT
+                         m.marker_id,
                          CONCAT('%s','lakes/',post_name,'/')
                     FROM
                          wp_posts p
@@ -39,7 +40,7 @@ class MarkersSerializer(serializers.ModelSerializer):
                         marker_id=%d;''' % (settings.HOST_NAME,
                                             marker.marker_id)
         data = Markers.objects.raw(query)
-        return str(list(data)[0])
+        return list(data)[0]
 
     class Meta:
         model = Markers
