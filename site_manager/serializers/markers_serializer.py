@@ -50,7 +50,7 @@ class MarkersSerializer(serializers.ModelSerializer):
                   'note', 'note2', 'photo_url1', 'photo_url2', 'photo_url3',
                   'photo_url4', 'approval', 'create_date', 'modify_date',
                   'author_id', 'post_id', 'gallery_id', 'region', 'district',
-                  'country', 'photos', 'lake')
+                  'country', 'photos', 'url')
 
 
 class ShortMarkersSerializer(serializers.ModelSerializer):
