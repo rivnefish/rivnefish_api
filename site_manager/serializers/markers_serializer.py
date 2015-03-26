@@ -11,7 +11,7 @@ class MarkersSerializer(serializers.ModelSerializer):
     region = serializers.SlugRelatedField(read_only=True, slug_field='name')
     # fishes_set = MarkersFishesSerializer()
     photos = serializers.SerializerMethodField()
-    lake = serializers.SerializerMethodField()
+    # lake = serializers.SerializerMethodField()
 
     def get_photos(self, marker):
         query = '''SELECT
