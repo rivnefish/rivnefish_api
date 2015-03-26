@@ -11,7 +11,7 @@ class MarkersSerializer(serializers.ModelSerializer):
     region = serializers.SlugRelatedField(read_only=True, slug_field='name')
     # fishes_set = MarkersFishesSerializer()
     photos = serializers.SerializerMethodField()
-    # lake = serializers.SerializerMethodField()
+    lake = serializers.SerializerMethodField()
 
     def get_photos(self, marker):
         query = '''SELECT
@@ -28,21 +28,18 @@ class MarkersSerializer(serializers.ModelSerializer):
         data = Markers.objects.raw(query)
         return list(sum(list(data.query), ()))
 
-    #===========================================================================
-    # def get_lake(self, marker):
-    #     query = '''SELECT
-    #                      m.marker_id,
-    #                      CONCAT('%s','lakes/',post_name,'/')
-    #                 FROM
-    #                      wp_posts p
-    #                 JOIN
-    #                      markers m ON p.ID=m.post_id
-    #                 where
-    #                     marker_id=%d;''' % (settings.HOST_NAME,
-    #                                         marker.marker_id)
-    #     data = Markers.objects.raw(query)
-    #     return str(list(data)[0])
-    #===========================================================================
+    def get_lake(self, marker):
+        query = '''SELECT
+                         CONCAT('%s','lakes/',post_name,'/')
+                    FROM
+                         wp_posts p
+                    JOIN
+                         markers m ON p.ID=m.post_id
+                    where
+                        marker_id=%d;''' % (settings.HOST_NAME,
+                                            marker.marker_id)
+        data = Markers.objects.raw(query)
+        return str(list(data.query)[0][0])
 
     class Meta:
         model = Markers
@@ -53,7 +50,7 @@ class MarkersSerializer(serializers.ModelSerializer):
                   'note', 'note2', 'photo_url1', 'photo_url2', 'photo_url3',
                   'photo_url4', 'approval', 'create_date', 'modify_date',
                   'author_id', 'post_id', 'gallery_id', 'region', 'district',
-                  'country', 'photos')
+                  'country', 'photos', 'lake')
 
 
 class ShortMarkersSerializer(serializers.ModelSerializer):
