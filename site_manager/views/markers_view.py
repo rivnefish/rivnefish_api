@@ -30,6 +30,15 @@ class MarkersViewSet(viewsets.ModelViewSet):
 
 class ShortMarkersViewSet(viewsets.ModelViewSet):
 
+
+    def get_queryset(self):
+        """If not superuser removes all rejected markers from queryset."""
+        if self.request.user.is_superuser:
+            return Markers.objects.all()
+        elif self.request.user.groups.filter(name__in=['mobile']).exists():
+            return Markers.objects.exclude(approval__startswith='rejected')
+        return Markers.objects.exclude(approval__startswith='rejected')
+
     queryset = Markers.objects.all()
     serializer_class = ShortMarkersSerializer
     filter_class = MarkersFilter
