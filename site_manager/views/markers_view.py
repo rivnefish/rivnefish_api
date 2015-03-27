@@ -9,6 +9,15 @@ from site_manager.serializers.markers_serializer import ShortMarkersSerializer
 
 class MarkersViewSet(viewsets.ModelViewSet):
 
+
+    def get_queryset(self):
+        """If not superuser removes all rejected markers from queryset."""
+        if self.request.user.is_superuser:
+            return Markers.objects.all()
+        elif self.request.user.groups.filter(name__in=['mobile']).exists():
+            return Markers.objects.exclude(approval__startswith='rejected')
+        return Markers.objects.exclude(approval__startswith='rejected')
+
     queryset = Markers.objects.all()
     serializer_class = MarkersSerializer
     #=============================================================
