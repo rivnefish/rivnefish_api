@@ -13,7 +13,7 @@ class MarkersSerializer(serializers.ModelSerializer):
     photos = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
 
-    def get_photos(self, marker, *args, **kwargs):
+    def get_photos(self, marker):
         query = '''SELECT
                         CONCAT('%s',g.path,'/',p.filename)
                     FROM
