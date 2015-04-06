@@ -49,5 +49,5 @@ class LastChangesViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         query = 'SELECT COUNT(*)+MAX(modify_date) FROM `markers`'
         time = Markers.objects.raw(query)
-        result = list(time.query)[0][0]
+        result = int(list(time.query)[0][0])
         return Response({"lastchanges": result})
