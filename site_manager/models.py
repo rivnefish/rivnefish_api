@@ -65,6 +65,14 @@ class Fishes(models.Model):
 
 class Markers(models.Model):
 
+    PERMIT_CHOICES = (('free', 'free'),
+                      ('paid', 'paid'),
+                      ('prohibited', 'prohibited'),
+                      ('unknown', 'unknown'))
+    TIME_TO_FISH_CHOICES = (('24h', '24h'),
+                            ('daylight', 'daylight'),
+                            ('unknown', 'unknown'))
+
     marker_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=60)
     address = models.CharField(max_length=100, blank=True)
@@ -82,14 +90,17 @@ class Markers(models.Model):
                                             db_column='distance_to_Rivne',
                                             blank=True)
                                             # Field name made lowercase.
-    permit = models.CharField(max_length=30)
+    permit = models.CharField(max_length=30, choices=PERMIT_CHOICES,
+                              default='unknown')
 
     price_24h = models.DecimalField(null=True, max_digits=7, decimal_places=2,
                                     blank=True)
     dayhour_price = models.DecimalField(null=True, max_digits=7,
                                         decimal_places=2, blank=True)
     boat_usage = models.CharField(max_length=3, blank=True)
-    time_to_fish = models.CharField(max_length=24, blank=True)
+    time_to_fish = models.CharField(max_length=24, blank=True,
+                                    choices=TIME_TO_FISH_CHOICES,
+                                    default='unknown')
     paid_fish = models.TextField(blank=True)
     note = models.TextField(blank=True)
     note2 = models.CharField(max_length=200)
