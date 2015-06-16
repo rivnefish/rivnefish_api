@@ -72,6 +72,9 @@ class Markers(models.Model):
     TIME_TO_FISH_CHOICES = (('24h', '24h'),
                             ('daylight', 'daylight'),
                             ('unknown', 'unknown'))
+    APPROVAL_CHOICES = (('approved', 'approved'),
+                        ('pending', 'pending'),
+                        ('rejected', 'rejected'))
 
     marker_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=60)
@@ -108,7 +111,8 @@ class Markers(models.Model):
     photo_url2 = models.CharField(max_length=2083, blank=True)
     photo_url3 = models.CharField(max_length=2083, blank=True)
     photo_url4 = models.CharField(max_length=2083, blank=True)
-    approval = models.CharField(max_length=24)
+    approval = models.CharField(max_length=24, choices=APPROVAL_CHOICES,
+                                default='pending')
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField()
     author_id = models.IntegerField(null=True, blank=True)
