@@ -85,6 +85,7 @@ class Markers(models.Model):
     content = models.TextField(blank=True)
     conveniences = models.TextField(blank=True)
     contact = models.TextField(blank=True)
+    contact_name = models.TextField(blank=True)
     max_depth = models.DecimalField(null=True, max_digits=8, decimal_places=2,
                                     blank=True)
     average_depth = models.DecimalField(null=True, max_digits=8,

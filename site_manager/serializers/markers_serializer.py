@@ -47,13 +47,13 @@ class MarkersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Markers
         fields = ('marker_id', 'name', 'address', 'lat', 'lng', 'area',
-                  'content', 'conveniences', 'contact', 'max_depth',
-                  'average_depth', 'distance_to_rivne', 'permit', 'price_24h',
-                  'dayhour_price', 'boat_usage', 'time_to_fish', 'paid_fish',
-                  'note', 'note2', 'photo_url1', 'photo_url2', 'photo_url3',
-                  'photo_url4', 'approval', 'create_date', 'modify_date',
-                  'author_id', 'post_id', 'gallery_id', 'region', 'district',
-                  'country', 'photos', 'url')
+                  'content', 'conveniences', 'contact', 'contact_name',
+                  'max_depth', 'average_depth', 'distance_to_rivne', 'permit',
+                  'price_24h', 'dayhour_price', 'boat_usage', 'time_to_fish',
+                  'paid_fish', 'note', 'note2', 'photo_url1', 'photo_url2',
+                  'photo_url3', 'photo_url4', 'approval', 'create_date',
+                  'modify_date', 'author_id', 'post_id', 'gallery_id',
+                  'region', 'district', 'country', 'photos', 'url')
 
 
 class ShortMarkersSerializer(serializers.ModelSerializer):
