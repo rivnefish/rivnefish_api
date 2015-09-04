@@ -61,7 +61,7 @@ python manage.py migrate
 ## If API is not avaliable  
 by URL http://api.rivnefish.com/admin/site_manager/markers/97/
 
-1) Next strings should be added into httpd.conf :
+1) Next strings should be added into httpd.conf:
 
 ```
 cat /usr/local/directadmin/data/users/rivnefish/httpd.conf
@@ -78,8 +78,7 @@ WSGIPythonPath /usr/home/rivnefish/domains/api.rivnefish.com/rivnefish-env/lib/p
 </VirtualHost>
 
 <VirtualHost 77.120.80.6:80 >
-        ServerName www.www2.rivnefish.com
-        ServerAlias www.www2.rivnefish.com www2.rivnefish.com
+        ServerName www.ads.rivnefish.com
 ```
 
 2) Restart httpd process
