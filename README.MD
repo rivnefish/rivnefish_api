@@ -38,7 +38,7 @@ sudo pip install virtualenv
 # create virtualenv
 virtualenv rivnefish-env
 
-# activate rivnefish-env
+# activate rivnefish-env, this command works only in BASH
 source rivnefish-env/bin/activate
 
 # now you can install required packages
