@@ -115,7 +115,6 @@ class Markers(models.Model):
     approval = models.CharField(max_length=24, choices=APPROVAL_CHOICES,
                                 default='pending')
     create_date = models.DateTimeField()
-    modify_date = models.DateTimeField()
     author_id = models.IntegerField(null=True, blank=True)
     post_id = models.IntegerField(null=True, blank=True)
     gallery_id = models.IntegerField(null=True, blank=True)
