@@ -116,6 +116,7 @@ class Markers(models.Model):
                                 default='pending')
     create_date = models.DateTimeField()
     author_id = models.IntegerField(null=True, blank=True)
+    modify_date = models.DateTimeField()
     post_id = models.IntegerField(null=True, blank=True)
     gallery_id = models.IntegerField(null=True, blank=True)
     district = models.ForeignKey(Districts, null=True, db_column='district',
