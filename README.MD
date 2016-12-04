@@ -82,3 +82,10 @@ WSGIPythonPath /usr/home/rivnefish/domains/api.rivnefish.com/rivnefish-env/lib/p
 ```
 
 2) Restart httpd process
+
+This line should be present in config file:
+
+```
+# grep LoadModule /etc/httpd/conf/httpd.conf
+LoadModule wsgi_module /usr/local/libexec/apache22/mod_wsgi.so
+```
